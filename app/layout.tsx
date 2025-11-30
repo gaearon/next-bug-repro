@@ -10,10 +10,10 @@ async function dedup(key: string): Promise<any> {
   console.log("starting");
   const promise = fetch("https://httpbin.org/get")
     .then((res) => {
-      console.log("done");
       return res.json();
     })
     .finally(() => {
+      console.log("done");
       pending.delete(key);
     });
 
