@@ -1,6 +1,6 @@
 const pending = new Map<string, Promise<any>>();
 
-async function dedup(key: string): Promise<string> {
+async function dedup(key: string): Promise<any> {
   let existingPromise;
   while ((existingPromise = pending.get(key))) {
     console.log("await existing");
@@ -8,14 +8,14 @@ async function dedup(key: string): Promise<string> {
   }
 
   console.log("starting");
-  const promise = new Promise<string>((resolve) => {
-    setTimeout(() => {
+  const promise = fetch("https://httpbin.org/get", { cache: "no-store" })
+    .then((res) => {
       console.log("done");
-      resolve("ok");
-    }, 100);
-  }).finally(() => {
-    pending.delete(key);
-  });
+      return res.json();
+    })
+    .finally(() => {
+      pending.delete(key);
+    });
 
   pending.set(key, promise);
   return promise;
