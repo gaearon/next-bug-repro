@@ -8,7 +8,7 @@ async function dedup(key: string): Promise<any> {
   }
 
   console.log("starting");
-  const promise = fetch("https://httpbin.org/get", { cache: "no-store" })
+  const promise = fetch("https://httpbin.org/get")
     .then((res) => {
       console.log("done");
       return res.json();
@@ -21,7 +21,11 @@ async function dedup(key: string): Promise<any> {
   return promise;
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   await dedup("test");
   return (
     <html>

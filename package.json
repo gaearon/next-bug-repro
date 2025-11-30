@@ -5,7 +5,7 @@
     "dev": "next dev --turbopack"
   },
   "dependencies": {
-    "next": "^16.1.0-canary.2",
+    "next": "16.1.0-canary.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

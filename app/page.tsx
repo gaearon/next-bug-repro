@@ -5,5 +5,5 @@ async function cachedFn(): Promise<void> {
 
 export default async function Page() {
   await cachedFn();
-  return <p>PAGE-DONE</p>;
+  return <p>page content</p>;
 }
